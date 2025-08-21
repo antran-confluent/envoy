@@ -705,6 +705,10 @@ public:
         access_log_type,
         &filter_manager_callbacks_.activeSpan()};
 
+	std::ostringstream oss;
+    this->dumpState(oss, 0);
+    ENVOY_STREAM_LOG(info, "Dumped state: {}", *this, oss.str());
+
     for (const auto& log_handler : access_log_handlers_) {
       log_handler->log(log_context, streamInfo());
     }
