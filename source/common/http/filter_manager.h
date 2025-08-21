@@ -708,6 +708,10 @@ public:
 	std::ostringstream oss;
     this->dumpState(oss, 0);
     ENVOY_STREAM_LOG(info, "Dumped state: {}", *this, oss.str());
+	ENVOY_STREAM_LOG(info, 
+		"Has key: {}", 
+		*this, 
+		streamInfo().filterState()->hasData<Network::ProxyProtocolFilterState>(Network::ProxyProtocolFilterState::key()));
 
     for (const auto& log_handler : access_log_handlers_) {
       log_handler->log(log_context, streamInfo());
