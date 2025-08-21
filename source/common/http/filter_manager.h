@@ -27,6 +27,7 @@
 #include "source/common/protobuf/utility.h"
 #include "source/common/runtime/runtime_features.h"
 #include "source/common/stream_info/stream_info_impl.h"
+#include "source/common/network/proxy_protocol_filter_state.h"
 
 namespace Envoy {
 namespace Http {
