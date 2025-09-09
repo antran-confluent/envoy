@@ -38,6 +38,7 @@ envoy_cc_library(
         "//source/common/http:utility_lib",
         "//source/common/singleton:const_singleton",
         "//source/common/stream_info:utility_lib",
+        "//source/common/common:logger_lib",
         "@com_google_cel_cpp//eval/public:cel_value",
         "@com_google_cel_cpp//eval/public:cel_value_producer",
         "@com_google_cel_cpp//eval/public/containers:container_backed_list_impl",
