@@ -332,11 +332,11 @@ absl::optional<CelValue> FilterStateWrapper::operator[](CelValue key) const {
       return cel_state->exprValue(&arena_, false);
     } else if (object != nullptr) {
       // Attempt to find the reflection object.
-      ENVOY_LOG(info, "FilterStateWrapper: found object for key {}", value);
+      ENVOY_LOG_MISC(info, "FilterStateWrapper: found object for key {}", value);
       auto factory =
           Registry::FactoryRegistry<StreamInfo::FilterState::ObjectFactory>::getFactory(value);
       if (factory) {
-        ENVOY_LOG(info, "FilterStateWrapper: found factory for key {}", value);
+        ENVOY_LOG_MISC(info, "FilterStateWrapper: found factory for key {}", value);
         auto reflection = factory->reflect(object);
         if (reflection) {
           auto* raw_reflection = reflection.release();
@@ -346,7 +346,7 @@ absl::optional<CelValue> FilterStateWrapper::operator[](CelValue key) const {
         }
       }
 
-      ENVOY_LOG(info, "FilterStateWrapper: no factory found for key {}, falling back to serialization", value);
+      ENVOY_LOG_MISC(info, "FilterStateWrapper: no factory found for key {}, falling back to serialization", value);
       absl::optional<std::string> serialized = object->serializeAsString();
       if (serialized.has_value()) {
         std::string* out = ProtobufWkt::Arena::Create<std::string>(&arena_, serialized.value());
@@ -355,7 +355,7 @@ absl::optional<CelValue> FilterStateWrapper::operator[](CelValue key) const {
     }
   }
   
-  ENVOY_LOG(info, "FilterStateWrapper: no object found for key {}", value);
+  ENVOY_LOG_MISC(info, "FilterStateWrapper: no object found for key {}", value);
   return {};
 }
 
