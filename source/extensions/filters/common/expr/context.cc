@@ -4,6 +4,7 @@
 #include "source/common/http/header_map_impl.h"
 #include "source/common/http/utility.h"
 #include "source/extensions/filters/common/expr/cel_state.h"
+#include "source/common/common/logger.h"
 
 #include "absl/strings/numbers.h"
 #include "absl/time/time.h"
